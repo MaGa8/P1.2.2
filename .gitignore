@@ -1,0 +1,10 @@
+*.class
+*code/pom.xml
+
+*~
+
+*.classpath
+*.layout
+*.config
+*.project
+
