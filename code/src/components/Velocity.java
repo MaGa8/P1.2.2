@@ -3,6 +3,10 @@ package components;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.*;
 
+/**
+ * class storing a velocity
+ * @author martin
+ */
 public class Velocity extends Vector3 implements Component 
 {
 	public Velocity (float x, float y, float z)
