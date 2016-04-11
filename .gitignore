@@ -1,10 +1,14 @@
+#compiled code
 *.class
+#maven configuration file
 *code/pom.xml
-
+#temp files
 *~
-
+#eclipse files
 *.classpath
 *.layout
 *.config
 *.project
 */.settings
+#umbrello file
+*.xmi
