@@ -2,9 +2,8 @@ package systems;
 
 import java.util.*;
 
-import com.badlogic.ashley.core.*;
-import com.badlogic.ashley.utils.*;
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Engine;
 
 import constants.CompoMappers;
 import constants.Families;
@@ -17,30 +16,13 @@ import components.Velocity;
  * @author martin
  */
 public class Movement extends EntitySystem
-{
-	/**
-	 * listener to attach to engine to update entities which need to be moved
-	 * @author martin
-	 */
-	public class NewEntitiesListener implements EntityListener
-	{
-		public void entityAdded (Entity added)
-		{
-			mMovingEntities.add (added);
-		}
-		
-		public void entityRemoved (Entity removed)
-		{
-			mMovingEntities.remove (removed);
-		}
-	}
-	
+{	
 	/**
 	 * default constructor
 	 */
 	public Movement()
 	{
-		mMovingEntities = new HashSet<>();
+		
 	}
 	
 	/**
@@ -51,7 +33,7 @@ public class Movement extends EntitySystem
 	public void addedToEngine (Engine e)
 	{
 		for (Entity ent : e.getEntitiesFor (Families.MOVING))
-			mMovingEntities.add (ent);
+			entities().add (ent);
 	}
 	
 	/**
@@ -60,7 +42,7 @@ public class Movement extends EntitySystem
 	 */
 	public void update (float dTime)
 	{
-		for (Entity move : mMovingEntities)
+		for (Entity move : entities())
 		{
 			Position p = CompoMappers.POSITION.get (move);
 			Velocity v = CompoMappers.VELOCITY.get (move);
@@ -68,7 +50,4 @@ public class Movement extends EntitySystem
 			p.mulAdd (v, dTime);
 		}
 	}
-	
-	
-	private HashSet<Entity> mMovingEntities;
 }
