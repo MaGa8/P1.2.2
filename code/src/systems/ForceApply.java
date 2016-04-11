@@ -43,6 +43,8 @@ public class ForceApply extends EntitySystem
 			//dv = 1/2 * a^2
 			a.scl (a);
 			v.add (a.scl (0.5f));
+			
+			f.setZero();
 		}
 	}
 	

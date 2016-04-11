@@ -27,9 +27,9 @@ public class GravityForce extends Vector3 implements Component
 		/**
 		 * @return gravity object being a vector of [0, 0, -gravityConstant]
 		 */
-		public GravityForce get()
+		public GravityForce get (float mass)
 		{
-			float[] gravityVec = {0, 0, -mGravityConstant};
+			float[] gravityVec = {0, 0, -mGravityConstant * mass};
 			return (new GravityForce (gravityVec));
 		}
 		
