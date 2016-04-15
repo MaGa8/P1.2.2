@@ -24,6 +24,7 @@ public class Ball extends Entity
 	 * constructs ball having:
 	 * a mass,
 	 * a velocity, 
+	 * a spin, 
 	 * a force, 
 	 * a gravity object
 	 * @param radius radius of ball
@@ -36,6 +37,8 @@ public class Ball extends Entity
 		float mass = mass (radius, density);
 		add (new Mass (mass));
 		add (new Velocity());
+		add (new Spin());
+		add (new Force());
 		add (gBuild.get (mass));
 	}
 }
