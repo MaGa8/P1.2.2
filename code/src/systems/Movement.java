@@ -2,12 +2,16 @@ package systems;
 
 import java.util.*;
 
+import logic.FrictionComputer;
+
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Engine;
 
 import constants.CompoMappers;
 import constants.Families;
+import constants.GlobalObjects;
 
+import components.Friction;
 import components.Position;
 import components.Velocity;
 
@@ -43,10 +47,22 @@ public class Movement extends EntitySystem
 	public void update (float dTime)
 	{
 		for (Entity move : entities())
-		{
-			Position p = CompoMappers.POSITION.get (move);
+		{	
 			Velocity v = CompoMappers.VELOCITY.get (move);
 			
+			//apply friction
+			if (Families.FRICTION.matches (move))
+			{
+				FrictionComputer compFric = new FrictionComputer (move);
+				v.sub (compFric.getMovingFriction());
+			}
+			
+			//set velocity to 0 if magnitude is below arithmetic precision
+			if (GlobalObjects.ROUND.epsilonEquals (0f, v.len()))
+				v.setZero();
+			
+			//alter position
+			Position p = CompoMappers.POSITION.get (move);
 			p.mulAdd (v, dTime);
 		}
 	}
