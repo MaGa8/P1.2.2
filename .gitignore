@@ -1,14 +1,27 @@
 #compiled code
 *.class
+
 #maven configuration file
 *code/pom.xml
+
 #temp files
 *~
+
 #eclipse files
 *.classpath
 *.layout
 *.config
 *.project
 */.settings
+
+#idea data
+*/.idea/
+*.eml
+*.iml
+
+#crash logs
+*.log
+
 #umbrello file
 *.xmi
+
