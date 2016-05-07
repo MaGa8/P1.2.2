@@ -100,4 +100,23 @@ public class PowersetGenerator<T> extends ArrayList<T>
 	{
 		return (int) (Math.pow (2, size()));
 	}
+	
+	/**
+	 * @param minLen minimum number of elements in each element of power set
+	 * @param maxLen maximum number of elements in each element of power set
+	 * @return the number of elements in this capped power set
+	 */
+	public int sizeOfPowerset (int minLen, int maxLen)
+	{
+		int size = 0;
+		for (int cLen = minLen; cLen <= maxLen; ++cLen)
+		{
+			int allPerms = (int) new Factorial (cLen).result();
+			int duplicates = (int) new Factorial (cLen).result();
+			int overhead = (int) new Factorial (size() - cLen).result();
+			
+			size += allPerms / (duplicates * overhead);
+		}
+		return size;
+	}
 }
