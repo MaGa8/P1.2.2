@@ -1,19 +1,15 @@
 package testing.geometry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Vector;
-
 import com.badlogic.gdx.math.*;
 
 import static org.junit.Assert.*;
 
+import geometry.spatial.*;
 import org.junit.Test;
 
 import testing.ArrayUtil;
 
-import geometry.*;
-import geometry.Solid.SolidException;
+import geometry.spatial.Solid.SolidException;
 
 public class BoxTest 
 {
@@ -27,7 +23,7 @@ public class BoxTest
 	public static boolean lengthTest (Vector3 offset, Vector3 dir1, Vector3 dir2, Vector3 dir3)
 	{
 		float d1 = dir1.len(), d2 = dir2.len(), d3 = dir3.len();
-		Box b = new Box (offset, ArrayUtil.construct (dir1, dir2, dir3));
+		Box b = new BoxBuilder (offset, ArrayUtil.construct (dir1, dir2, dir3)).build();
 		
 		float[] dims = b.getDimensions();
 		return (dims[0] == d1 && dims[1] == d2 && dims[2] == d3);
@@ -80,7 +76,7 @@ public class BoxTest
 		boolean thrown = false;
 		try
 		{
-			Box b = new Box (offset, dirs);
+			Box b = new BoxBuilder (offset, dirs).build();
 		}
 		catch (SolidException se)
 		{
@@ -105,7 +101,7 @@ public class BoxTest
 		boolean thrown = false;
 		try
 		{
-			Box b = new Box (offset, ArrayUtil.construct (d1, d2, d3));
+			Box b = new BoxBuilder (offset, ArrayUtil.construct (d1, d2, d3)).build();
 		}
 		catch (SolidException se)
 		{

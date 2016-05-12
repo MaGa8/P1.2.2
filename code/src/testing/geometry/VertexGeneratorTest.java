@@ -1,8 +1,8 @@
 package testing.geometry;
 
 import static org.junit.Assert.*;
-import geometry.Box;
-import geometry.Rectangle;
+
+import geometry.planar.Rectangle;
 import geometry.VertexGenerator;
 
 import java.util.ArrayList;

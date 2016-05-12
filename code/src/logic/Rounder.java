@@ -8,41 +8,33 @@ package logic;
 public class Rounder
 {
 	/**
-	 * @param power an integer
-	 * @return 10 ^ power
-	 */
-	public static double shift (int power)
-	{
-		return Math.pow(10, power);
-	}
-	
-	/**
-	 * @param number number to round
-	 * @param shift factor by which to multiply before rounding and by which to
-	 * divide after
-	 * @return rounded number
-	 */
-	public static double round (double number, double shift)
-	{
-		return (Math.round (number * shift) / shift);
-	}
-	
-	/**
 	 * @param precision number of decimals relevant for rounding
 	 */
 	public Rounder (int precision)
 	{
 		assert (precision >= 0);
 		mPrecision = precision;
+		setEpsilon();
+		setShift();
 	}
-	
+
+	/**
+	 * @return the epsilon value used for comparisons, thus 10^-(precision + 1)
+	 */
+	public double getEpsilon() { return mEpsilon; }
+
+	/**
+	 * @return coefficient used to multiply when rounding and divide by after rounding, thus 10^precision
+	 */
+	public double getShift() { return mShift; }
+
 	/**
 	 * @param num number to round
 	 * @return num rounded to specified decimal places
 	 */
 	public double roundDigits (Number num)
 	{
-		return round (num.doubleValue(), shift (mPrecision));
+		return Math.round (num.doubleValue() * getShift()) / getShift();
 	}
 	
 	/**
@@ -54,10 +46,15 @@ public class Rounder
 		double firstFigure = Math.log10 (num.doubleValue());
 		firstFigure = Math.ceil (firstFigure) - mPrecision;
 		
-		double shift = shift ((int)-firstFigure);
-		return (round (num.doubleValue(), shift));
+		double shift = Math.pow (10, -firstFigure);
+		return (Math.round (num.doubleValue() * shift) / shift);
 	}
-	
+
+	/**
+	 * @return precision used
+	 */
+	public int getPrecision() { return mPrecision; }
+
 	/**
 	 * @param n1 a number
 	 * @param n2 another number
@@ -65,11 +62,9 @@ public class Rounder
 	 */
 	public boolean epsilonEquals (Number n1, Number n2)
 	{
-		double eps = Math.pow (10, -mPrecision + 1);
-		
 		double dn1 = n1.doubleValue(), dn2 = n2.doubleValue();
 		
-		return (dn1 - eps <= dn2 && dn1 + eps >= dn2);
+		return (dn1 - getEpsilon() <= dn2 && dn1 + getEpsilon() >= dn2);
 	}
 	
 	/**
@@ -81,6 +76,24 @@ public class Rounder
 	{
 		return (roundSignificant (n1) == roundSignificant (n2));
 	}
-	
+
+	/**
+	 * sets epsilon used
+	 */
+	private void setEpsilon ()
+	{
+		mEpsilon = Math.pow(10, -mPrecision) - Math.pow (10, -mPrecision - 1);
+	}
+
+	/**
+	 * sets the coefficient used for rounding
+	 */
+	private void setShift()
+	{
+		mShift = Math.pow (10, mPrecision);
+	}
+
+	private double mEpsilon;
+	private double mShift;
 	private int mPrecision;
 }
