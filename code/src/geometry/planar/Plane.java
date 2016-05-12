@@ -101,7 +101,7 @@ public class Plane
 	 */
 	public void setNormalOrientation (Vector3 p)
 	{
-		float dotProd = mNormal.dot (p);
+		float dotProd = testPoint (p);
 		if (!GlobalObjects.ROUND.epsilonEquals (dotProd, 0f) && dotProd < 0)
 			mNormal.scl (-1f);
 	}

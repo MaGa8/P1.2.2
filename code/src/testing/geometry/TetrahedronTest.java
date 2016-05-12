@@ -154,7 +154,7 @@ public class TetrahedronTest
 		ps[2] = new Vector3 (1.5f, 5f, -1f);
 		ps[3] = new Vector3 (2.5f, 4f, 3f);
 
-		Vector3 notWithin = new Vector3 (2.5f, 4f, 3f);
+		Vector3 notWithin = new Vector3 (1.5f, 3.5f, 3f);
 		assertFalse ("vertex outside tetrahedron", within (ps, notWithin));
 	}
 
