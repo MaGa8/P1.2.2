@@ -19,4 +19,7 @@ public class Families
 	public static Family GRAVITY_ATTRACTED = Family.all (Mass.class, Force.class, GravityForce.class).get();
 	/**family object for objects affected by friction, having a mass, velocity and gravity component**/
 	public static Family FRICTION = Family.all (Friction.class, Mass.class, Velocity.class).get();
+	/** family object for objects involved in collisions */
+	public static Family COLLIDING = Family.all (Position.class, Mass.class, Body.class).get();
+
 }

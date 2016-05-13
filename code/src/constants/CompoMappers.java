@@ -12,6 +12,7 @@ public class CompoMappers
 {
 	//static properties
 	public static final ComponentMapper<Mass> MASS = ComponentMapper.getFor (Mass.class);
+	public static final ComponentMapper<Body> BODY = ComponentMapper.getFor (Body.class);
 	//position
 	public static final ComponentMapper<Position> POSITION = ComponentMapper.getFor (Position.class);
 	//velocity

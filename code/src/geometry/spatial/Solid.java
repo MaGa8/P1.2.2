@@ -1,5 +1,8 @@
 package geometry.spatial;
 
+import java.util.Arrays;
+import java.util.TreeSet;
+
 import com.badlogic.gdx.math.Vector3;
 import geometry.planar.Shape;
 
@@ -44,6 +47,19 @@ public abstract class Solid
 	 * @return true if p is within the solid, false otherwise
 	 */
 	public abstract boolean isWithin (Vector3 p);
+
+	/**
+	 * tests equality for solids
+	 * @param comp solid to compare with
+	 * @return true if all vertices of this are vertices of comp and all vertices of comp are contained in this
+	 */
+	public boolean equals (Solid comp)
+	{
+		TreeSet<Vector3> tVertices = new TreeSet<> (Arrays.asList (mVertices));
+		TreeSet<Vector3> compVertices = new TreeSet<> (Arrays.asList (comp.getVertices()));
+
+		return (tVertices.containsAll (compVertices) && compVertices.containsAll (tVertices));
+	}
 	
 	
 	private Vector3[] mVertices;
