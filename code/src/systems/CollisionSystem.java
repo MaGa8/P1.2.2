@@ -1,12 +1,18 @@
 package systems;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
+import collision.CollisionComputer;
+import collision.CollisionDetector;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 
 
+import com.badlogic.gdx.math.Vector3;
+import components.Force;
+import constants.CompoMappers;
 import constants.Families;
 
 /**
@@ -15,6 +21,14 @@ import constants.Families;
  */
 public class CollisionSystem extends EntitySystem
 {
+	/**
+	 * default constructor. Constructs objects needed.
+	 */
+	public CollisionSystem()
+	{
+		mActive = new HashSet<>();
+		mDetect = new CollisionDetector();
+	}
 
 	/**
 	 * adds relevant entities of the engine to the system once the system was added to the
@@ -26,6 +40,7 @@ public class CollisionSystem extends EntitySystem
 		for (Entity add : e.getEntitiesFor (Families.COLLIDING))
 		{
 			entities().add (add);
+			mDetect.add (add);
 			if (Families.ACCELERABLE.matches (add))
 				mActive.add (add);
 		}
@@ -38,14 +53,40 @@ public class CollisionSystem extends EntitySystem
 	public void update (float dTime)
 	{
 		//detect collisions
+		ArrayList<CollisionDetector.ColliderPair> colliding = mDetect.getAnyColliding();
 		//for each collision detected
+		for (CollisionDetector.ColliderPair collPair : colliding)
+		{
 			//if entity 1 is active
+			if (collPair.mFirst.isActive())
+			{
 				//compute force excerted
+				Entity active = collPair.mFirst.getColliding();
+				CollisionComputer computeImpact = new CollisionComputer (active, collPair.mSecond.getColliding());
+				Vector3 impact = computeImpact.collisionForce();
+
+				assert (CompoMappers.FORCE.has (active));
+				Force driving = CompoMappers.FORCE.get (active);
+				driving.add (impact);
+			}
 			//if entity 2 is active
+			if (collPair.mSecond.isActive())
+			{
 				//copute force excerted
+				Entity active = collPair.mSecond.getColliding();
+				CollisionComputer computeImpact = new CollisionComputer (active, collPair.mFirst.getColliding());
+				Vector3 impact = computeImpact.collisionForce();
+
+				assert (CompoMappers.FORCE.has (active));
+				Force driving = CompoMappers.FORCE.get (active);
+				driving.add (impact);
+			}
+		}
 
 	}
 
 	/** store impacted by collisions */
 	private HashSet<Entity> mActive;
+	/** detects collisions within the set of entities */
+	private CollisionDetector mDetect;
 }
