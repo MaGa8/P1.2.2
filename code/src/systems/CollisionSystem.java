@@ -4,6 +4,7 @@ package systems;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import collision.ColliderPair;
 import collision.CollisionComputer;
 import collision.CollisionDetector;
 import com.badlogic.ashley.core.Engine;
@@ -53,9 +54,9 @@ public class CollisionSystem extends EntitySystem
 	public void update (float dTime)
 	{
 		//detect collisions
-		ArrayList<CollisionDetector.ColliderPair> colliding = mDetect.getAnyColliding();
+		ArrayList<ColliderPair> colliding = mDetect.getAnyColliding();
 		//for each collision detected
-		for (CollisionDetector.ColliderPair collPair : colliding)
+		for (ColliderPair collPair : colliding)
 		{
 			//if entity 1 is active
 			if (collPair.mFirst.isActive())

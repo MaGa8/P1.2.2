@@ -8,6 +8,7 @@ import constants.Families;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -17,45 +18,11 @@ import java.util.Set;
  */
 public class CollisionDetector
 {
-	/**
-	 * class storing an entity together with its body
-	 */
-	public class BodyPair
+
+
+	public CollisionDetector ()
 	{
-		/**
-		 *
-		 * @param e entity belonging to the colliding family
-		 */
-		public BodyPair (Entity e)
-		{
-			mEntity = e;
-			mBody = CompoMappers.BODY.get (e);
-		}
 
-
-		public boolean equals (BodyPair comp) { return this.mEntity.equals (comp.mEntity); }
-
-		public Body mBody;
-		public Entity mEntity;
-	}
-
-	/**
-	 * inner class storing two actors as colliders (i.e. entities) involved in collision
-	 */
-	public class ColliderPair
-	{
-		/**
-		 *
-		 * @param first collider A involved in collision with collider B
-		 * @param second collider B involved in collision with collider A
-		 */
-		public ColliderPair (Collider first, Collider second)
-		{
-			mFirst = first;
-			mSecond = second;
-		}
-
-		public Collider mFirst, mSecond;
 	}
 
 	/**
@@ -64,9 +31,26 @@ public class CollisionDetector
 	 */
 	public ArrayList<ColliderPair> getAnyColliding()
 	{
+		//clone sets
+		HashSet<BodyPair> currentBodies = (HashSet<BodyPair>) mAll.clone();
+		ArrayList<ColliderPair> colliding = new ArrayList<>();
 
+		//for every active|all pair check for collision
+		for (BodyPair activeBody : mActive)
+		{
+			currentBodies.remove (activeBody);
+			for (BodyPair passiveBody : currentBodies)
+			{
+				//if colliding: add as collider pair
+				//@TODO store intersection detectors permanently
+				BodyIntersectionDetector checkBodies = new BodyIntersectionDetector (activeBody.mBody, passiveBody.mBody);
+				if (checkBodies.doIntersect())
+					colliding.add (checkBodies.intersection());
+			}
+		}
+
+		return colliding;
 	}
-
 
 	/**
 	 *
@@ -105,5 +89,5 @@ public class CollisionDetector
 		mAll.remove (ePair);
 	}
 
-	private Set<BodyPair> mActive, mAll;
+	private HashSet<BodyPair> mActive, mAll;
 }
