@@ -32,6 +32,7 @@ public class SolidIntersection
 	 */
 	public Vector3 intersection() throws IllegalStateException
 	{
+		runInitialTest();
 		if (!mHasIntersection)
 			throw new IllegalStateException ("no intersection was found");
 		return mIntersection;
@@ -43,6 +44,7 @@ public class SolidIntersection
 	 */
 	public boolean doIntersect()
 	{
+		runInitialTest();
 		return mHasIntersection;
 	}
 
@@ -65,6 +67,16 @@ public class SolidIntersection
 			//increment
 			++cVertex;
 		}
+	}
+
+	/**
+	 * tests whether initial test was executed. If it was not executed the method call will invoke checkForIntersection
+	 * to do so.
+	 */
+	private void runInitialTest()
+	{
+		if (mIntersection == null)
+			checkForIntersection();
 	}
 
 	private Solid mS1, mS2;
