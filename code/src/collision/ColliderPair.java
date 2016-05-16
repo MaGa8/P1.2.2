@@ -11,11 +11,11 @@ public class ColliderPair
 	 * @param first collider A involved in collision with collider B
 	 * @param second collider B involved in collision with collider A
 	 */
-	public ColliderPair (Collider first, Collider second)
+	public ColliderPair (ColliderEntity first, ColliderEntity second)
 	{
 		mFirst = first;
 		mSecond = second;
 	}
 
-	public Collider mFirst, mSecond;
+	public ColliderEntity mFirst, mSecond;
 }

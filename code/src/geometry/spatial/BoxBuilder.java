@@ -56,7 +56,7 @@ public class BoxBuilder
             throw new Solid.SolidException (message);
         }
         if (!formOrthogonal())
-            throw new Solid.SolidException ("direction vectors are not mutually exclusive");
+            throw new Solid.SolidException ("direction vectors are not mutually orthogonal");
     }
 
     /**
