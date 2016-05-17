@@ -1,6 +1,6 @@
 package testing.logic;
 
-import logic.Rounder;
+import generic.Rounder;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
