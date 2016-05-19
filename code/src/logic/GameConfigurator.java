@@ -3,6 +3,7 @@ package logic;
 import com.badlogic.ashley.core.Engine;
 import entities.Ball;
 import entities.EntityFactory;
+import entities.Hole;
 import systems.SystemsTracker;
 
 import java.util.HashMap;
@@ -16,12 +17,11 @@ import java.util.HashMap;
 public class GameConfigurator
 {
 	/**
-	 * constructs game configurator for e with an empty map of balls, no hole set and no systems stored
-	 * @param e
+	 * constructs game configurator using a new engine with an empty map of balls, no hole set and no systems stored
 	 */
-	public GameConfigurator (Engine e)
+	public GameConfigurator ()
 	{
-
+		mEngine = new Engine();
 	}
 
 	/**

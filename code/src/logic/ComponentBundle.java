@@ -3,7 +3,7 @@ package logic;
 import com.badlogic.ashley.core.Component;
 import components.ComponentFactory;
 import systems.EntitySystem;
-import systems.SystemFactory;
+import systems.EntitySystemFactory;
 
 /**
  * Class pairing a component and the respective system. The class is uniquely identified by the class types of
@@ -18,7 +18,7 @@ public class ComponentBundle
 	 * @param c a component factory
 	 * @param s a system factory
 	 */
-	public ComponentBundle (ComponentFactory c, SystemFactory s)
+	public ComponentBundle (ComponentFactory c, EntitySystemFactory s)
 	{
 		mComponentProducer = c;
 		mSystemProducer = s;
@@ -54,5 +54,5 @@ public class ComponentBundle
 	}
 
 	private ComponentFactory mComponentProducer;
-	private SystemFactory mSystemProducer;
+	private EntitySystemFactory mSystemProducer;
 }

@@ -1,4 +1,4 @@
-package logic;
+package generic;
 
 /**
  * class performing rounding to a specified accuracy. 
