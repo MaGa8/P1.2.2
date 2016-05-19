@@ -1,6 +1,5 @@
 package components;
 
-import com.badlogic.ashley.core.Component;
 
 /**
  * static friction component\n
@@ -36,7 +35,13 @@ public class Friction implements Component
 		mStaticSpinCoefficient = staticSpin;
 		mDynamicSpinCoefficient = dynamicSpin;
 	}
-	
+
+
+	public Friction clone()
+	{
+		 return new Friction (mStaticMoveCoefficient, mDynamicMoveCoefficient, mStaticSpinCoefficient, mDynamicSpinCoefficient);
+	}
+
 	/**
 	 * coefficient getter
 	 * @param s friction state

@@ -1,6 +1,5 @@
 package components;
 
-import com.badlogic.ashley.core.Component;
 
 public class Mass implements Component
 {
@@ -9,6 +8,11 @@ public class Mass implements Component
 		mMass = mass;
 	}
 	
-	
+
+	public Mass clone()
+	{
+		return new Mass (mMass);
+	}
+
 	public float mMass;
 }

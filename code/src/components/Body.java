@@ -1,6 +1,5 @@
 package components;
 
-import com.badlogic.ashley.core.Component;
 
 import java.util.HashSet;
 
@@ -10,5 +9,7 @@ import java.util.HashSet;
  */
 public class Body<T> extends HashSet<T> implements Component
 {
-
+	//@TODO flyweight
+	//@TODO use immutable geometric objects
+	//@TODO implement clone
 }

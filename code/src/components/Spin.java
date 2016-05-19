@@ -1,6 +1,5 @@
 package components;
 
-import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.*;
 
 public class Spin extends Vector3 implements Component
@@ -12,6 +11,15 @@ public class Spin extends Vector3 implements Component
 	{
 		return super.cpy().scl (mRevolutions);
 	}
-	
+
+
+	public Spin clone()
+	{
+		Spin sp = new Spin();
+		sp.set (this);
+		return sp;
+	}
+
+
 	public float mRevolutions;
 }
