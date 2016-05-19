@@ -1,6 +1,6 @@
 package constants;
 
-import logic.Rounder;
+import generic.Rounder;
 
 /**
  * class storing various global access objects

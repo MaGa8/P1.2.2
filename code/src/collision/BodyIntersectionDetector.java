@@ -57,7 +57,8 @@ public class BodyIntersectionDetector
 				Solid s2 = iB2.next();
 				SolidIntersection intersection = new SolidIntersection (s1, s2);
 
-				ColliderEntity c1 = new ColliderEntity()
+				???
+				ColliderEntity c1 = new ColliderEntity();
 
 				mIntersection = new ColliderPair();
 			}

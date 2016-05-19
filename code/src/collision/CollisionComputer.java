@@ -28,7 +28,7 @@ public class CollisionComputer
 	 */
 	public Shape getCollidingSide()
 	{
-
+		return null;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class CollisionComputer
 	 */
 	public Vector3 collisionForce()
 	{
-
+		return null;
 	}
 
 

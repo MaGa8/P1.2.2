@@ -36,7 +36,7 @@ public class ColliderEntity<T extends Solid> extends ColliderBody<T>
 
 	/**
 	 *
-	 * @return true if entity stored is actively involved in collisions
+	 * @return true if entity stored is actively involved in collisions, i.e. belongs to accelerable family
 	 */
 	public boolean isActive() { return Families.ACCELERABLE.matches (getCollidingEntity()); }
 

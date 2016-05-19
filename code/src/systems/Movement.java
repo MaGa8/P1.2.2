@@ -1,9 +1,5 @@
 package systems;
 
-import java.util.*;
-
-import logic.FrictionComputer;
-
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Engine;
 
@@ -11,7 +7,6 @@ import constants.CompoMappers;
 import constants.Families;
 import constants.GlobalObjects;
 
-import components.Friction;
 import components.Position;
 import components.Velocity;
 

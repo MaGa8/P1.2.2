@@ -53,15 +53,6 @@ public class CollisionDetector
 	}
 
 	/**
-	 *
-	 * @return true if there is any collision between a pair of (active, active) or (active/passive) entities
-	 */
-	public boolean collision()
-	{
-
-	}
-
-	/**
 	 * adds e to the set of entities to check for collisions with.
 	 * @param e an entity belonging to the colliding family
 	 * @throws IllegalArgumentException if e was already stored

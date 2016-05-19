@@ -9,7 +9,8 @@ import java.util.HashSet;
  */
 public class Body<T> extends HashSet<T> implements Component
 {
-	//@TODO flyweight
 	//@TODO use immutable geometric objects
 	//@TODO implement clone
+
+	//@TODO flyweight
 }

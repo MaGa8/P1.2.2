@@ -12,4 +12,5 @@ public interface EntitySystemFactory
 	 * @return a new reference to an entity system.
 	 */
 	public EntitySystem produce();
+	
 }

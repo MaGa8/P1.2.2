@@ -1,7 +1,5 @@
 package constants;
 
-import logic.Rounder;
-
 /**
  * class storing physics related coefficients
  * @author martin

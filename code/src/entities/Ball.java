@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.Entity;
 import components.*;
 
 /**
- * ball entity
+ * ball entity, tag class
  * @author martin
  */
 public class Ball extends Entity 
@@ -21,24 +21,13 @@ public class Ball extends Entity
 	}
 	
 	/**
-	 * constructs ball having:
-	 * a mass,
-	 * a velocity, 
-	 * a spin, 
-	 * a force, 
-	 * a gravity object
-	 * @param radius radius of ball
-	 * @param density density of ball's material
-	 * @param gBuild gravity builder object \n
+	 * constructs ball having no components
 	 * note: the position needs to be set manually by adding a position component to this ball
 	 */
-	public Ball (float radius, float density, GravityForce.Builder gBuild)
+	public Ball (Entity ballEntity)
 	{
-		float mass = mass (radius, density);
-		add (new Mass (mass));
-		add (new Velocity());
-		add (new Spin());
-		add (new Force());
-		add (gBuild.get (mass));
+		mEntity = ballEntity;
 	}
+
+	public Entity mEntity;
 }
