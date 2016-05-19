@@ -1,8 +1,7 @@
 package logic;
 
 import com.badlogic.ashley.core.Component;
-import entities.EntityFactory;
-import sun.awt.ComponentFactory;
+import components.ComponentFactory;
 import systems.EntitySystem;
 import systems.SystemFactory;
 
@@ -31,7 +30,7 @@ public class ComponentBundle
 	 */
 	public Component component()
 	{
-
+		return mComponentProducer.produce();
 	}
 
 	/**
@@ -40,7 +39,7 @@ public class ComponentBundle
 	 */
 	public EntitySystem system()
 	{
-
+		return mSystemProducer.produce();
 	}
 
 	/**
